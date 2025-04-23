@@ -22,6 +22,8 @@ private:
     float crosshairX, crosshairY;
     int score;
     std::vector<Target> targets;
+    float timer; // Add a timer
+    bool isGameOver;
 
     void spawnTargets();
     void checkCollisions();

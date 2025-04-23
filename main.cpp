@@ -7,6 +7,7 @@ const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 600;
 
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
+void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
 
 Game game(WINDOW_WIDTH, WINDOW_HEIGHT);
 
@@ -28,6 +29,9 @@ int main() {
 
     // Set mouse callback
     glfwSetCursorPosCallback(window, mouse_callback);
+
+    // Set mouse button callback
+    glfwSetMouseButtonCallback(window, mouse_button_callback);
 
     // Initialize game and renderer
     Renderer::init();
@@ -55,4 +59,10 @@ int main() {
 
 void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
     game.handleMouseMovement(xpos, ypos);
+}
+
+void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
+    if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) {
+        game.handleMouseClick();
+    }
 }
